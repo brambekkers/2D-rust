@@ -1,8 +1,8 @@
 import { Server } from 'socket.io'
 
 const world = {
-  width: 2000,
-  height: 2000
+  width: 6000,
+  height: 6000
 }
 
 const io = new Server(3000, {

@@ -5,7 +5,6 @@
 <template>
   <Suspense>
     <PhaserContainer />
-
     <template #fallback>
       <div class="placeholder">Downloading ...</div>
     </template>
