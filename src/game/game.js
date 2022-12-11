@@ -1,12 +1,9 @@
 import Phaser from 'phaser'
+import WorldLoader from './scenes/WorldLoader'
+import CharacterLoader from './scenes/CharacterLoader'
 import BootScene from './scenes/BootScene'
 import PlayScene from './scenes/PlayScene'
 
-import { useWorldStore } from '../stores/world'
-
-const worldStore = useWorldStore()
-const { width, height } = worldStore.world
-console.log(window.innerWidth)
 function launch(containerId) {
   return new Phaser.Game({
     type: Phaser.AUTO,
@@ -22,7 +19,7 @@ function launch(containerId) {
         debug: true
       }
     },
-    scene: [BootScene, PlayScene]
+    scene: [WorldLoader, CharacterLoader, BootScene, PlayScene]
   })
 }
 
