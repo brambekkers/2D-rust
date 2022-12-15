@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { io } from 'socket.io-client'
+import { usePlayersStore } from './players'
 import { useWorldStore } from './world'
 
 export const useSocketStore = defineStore('socket', {
@@ -13,9 +14,14 @@ export const useSocketStore = defineStore('socket', {
         this.socket.emit('getWorld')
       })
 
-      this.socket.on('sentWorld', (World) => {
+      this.socket.on('sentWorld', (world) => {
         const worldStore = useWorldStore()
-        worldStore.updateWorld(World)
+        worldStore.updateWorld(world)
+      })
+
+      this.socket.on('updatePlayers', (players) => {
+        const playersStore = usePlayersStore()
+        playersStore.updatePlayers(players)
       })
     }
   }

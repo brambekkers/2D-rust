@@ -19,6 +19,6 @@
       "preact/*": ["./stub/empty.d.ts"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["/**/*.ts", "/**/*.d.ts", "/**/*.tsx", "/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

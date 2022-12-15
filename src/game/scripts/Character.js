@@ -14,20 +14,18 @@ export default class World {
     this.sprite.body.onWorldBounds = true // enable worldbounds collision event
   }
 
-  move() {
-    this.sprite.setVelocity(0)
-
-    this.playerMovement()
-    this.playerAnimation()
+  move({ x, y }) {
+    this.sprite.x = x
+    this.sprite.y = y
   }
 
-  playerMovement() {
+  playerInput() {
+    this.sprite.setVelocity(0)
     const cursor = this.scene.input.keyboard.createCursorKeys()
     const left = cursor.left.isDown
     const right = cursor.right.isDown
     const up = cursor.up.isDown
     const down = cursor.down.isDown
-
     if (left) {
       this.sprite.setVelocityX(-300)
     }
@@ -40,17 +38,20 @@ export default class World {
     if (down) {
       this.sprite.setVelocityY(300)
     }
-
-    //
   }
 
-  playerAnimation() {
+  playerAnimation({ x, y }) {
+    const left = x > this.sprite.x
+    const right = x < this.sprite.x
+    const up = y > this.sprite.y
+    const down = y < this.sprite.y
+
     // Set keyboard cursors
-    const cursor = this.scene.input.keyboard.createCursorKeys()
-    const left = cursor.left.isDown
-    const right = cursor.right.isDown
-    const up = cursor.up.isDown
-    const down = cursor.down.isDown
+    // const cursor = this.scene.input.keyboard.createCursorKeys()
+    // const left = cursor.left.isDown
+    // const right = cursor.right.isDown
+    // const up = cursor.up.isDown
+    // const down = cursor.down.isDown
 
     if (up && left) {
       this.sprite.anims.play('run_up_left', true)
