@@ -23,6 +23,9 @@ export const useSocketStore = defineStore('socket', {
         const playersStore = usePlayersStore()
         playersStore.updatePlayers(players)
       })
+    },
+    disconnectFromServer() {
+      this.socket.disconnect()
     }
   }
 })

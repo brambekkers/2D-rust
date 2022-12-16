@@ -8,7 +8,9 @@
     socket.connectToServer()
   })
 
-  onUnmounted(() => {})
+  onUnmounted(() => {
+    socket.disconnectFromServer()
+  })
 </script>
 
 <template>

@@ -22,13 +22,29 @@ const io = new Server(3000, {
 })
 
 io.on('connection', (socket) => {
+  players[socket.id] = { id: socket.id, x: -1000, y: -1000 }
+  console.log('user connected')
+  logPlayerAmount()
+
   socket.on('getWorld', () => {
     socket.emit('sentWorld', world)
-    console.log('get world') // world
   })
 
   socket.on('updatePlayer', ({ x, y }) => {
     players[socket.id] = { id: socket.id, x, y }
     socket.emit('updatePlayers', players)
   })
+
+  socket.on('disconnect', () => {
+    delete players[socket.id]
+
+    console.log('disconnected')
+    logPlayerAmount()
+    socket.broadcast.emit('updatePlayers', players)
+  })
 })
+
+const logPlayerAmount = () => {
+  console.log(Object.keys(players).length, 'players')
+  console.log('----------------------------------------')
+}

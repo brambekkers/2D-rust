@@ -47,6 +47,7 @@ export default class PlayScene extends Scene {
 
     // Loop over all players and update their position
     for (const id in playersStore.players) {
+      console.log('id', id)
       const p = playersStore.players[id]
       // If player doesn't exist, create it
       if (!this.characters[id]) this.characters[id] = new Character({ scene: this, x: p.x, y: p.y })

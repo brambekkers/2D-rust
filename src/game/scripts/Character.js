@@ -15,8 +15,7 @@ export default class World {
   }
 
   move({ x, y }) {
-    this.sprite.x = x
-    this.sprite.y = y
+    this.sprite.setPosition(x, y)
   }
 
   playerInput() {
